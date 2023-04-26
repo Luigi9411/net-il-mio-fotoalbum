@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using net_il_mio_fotoalbum.Models;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class PhotoController : Controller
     {
         private readonly ILogger<PhotoController> _logger;
@@ -36,6 +38,7 @@ namespace net_il_mio_fotoalbum.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
            var formModel = new PhotoFormModel
@@ -46,6 +49,7 @@ namespace net_il_mio_fotoalbum.Controllers
           return View(formModel);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(PhotoFormModel form)
@@ -67,6 +71,7 @@ namespace net_il_mio_fotoalbum.Controllers
            return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(int id)
         {
            var photo = _context.Photos.Include(p => p.Categories).FirstOrDefault(p => p.Id == id);
@@ -86,6 +91,7 @@ namespace net_il_mio_fotoalbum.Controllers
                return View(formModel);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Update(int id, PhotoFormModel form)
@@ -117,6 +123,7 @@ namespace net_il_mio_fotoalbum.Controllers
                 return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)

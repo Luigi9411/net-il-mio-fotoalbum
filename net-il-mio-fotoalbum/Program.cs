@@ -1,10 +1,28 @@
 using net_il_mio_fotoalbum.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<AlbumContext>(options =>
+    options.UseSqlServer("Data Source=localhost;Initial Catalog=Photo.Db;Integrated Security=True;TrustServerCertificate=True"));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AlbumContext>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 0;
+    options.Password.RequiredUniqueChars = 0;
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSqlServer<AlbumContext>("Data Source=localhost;Initial Catalog=Photo.Db;Integrated Security=True;TrustServerCertificate=True");
 
 var app = builder.Build();
 
@@ -20,12 +38,15 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Photo}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 
 using (var scope = app.Services.CreateScope())
