@@ -1,0 +1,27 @@
+﻿@model Photo
+
+
+@{
+    var photo = Model;
+}
+
+<li class="me-4">
+    <div class="card" style="width: 18rem;">
+        <img src="@photo.ImgSrc" class="card-img-top" alt="" style="height: 12rem;">
+        <div class="card-body">
+            <h4>
+                <a class="card-title ms-lg-3" href="@Url.Action("Detail", "Photo", new { Id = photo.Id })">@photo.Title</a>
+            </h4>
+            <p class="card-text ms-lg-3">@photo.Description</p>
+                <div class="bt">
+                    <button class="btn btn-secondary mt-3">
+                        <a href="@Url.Action("Update","Photo", new { Id = photo.Id })" class="text-black">Edit</a>
+                    </button>
+                    <form asp-action="Delete" asp-controller="Photo" asp-route-id="@photo.Id">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-secondary mt-3 text-black">Delete</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</li>

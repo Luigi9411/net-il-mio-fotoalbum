@@ -1,0 +1,21 @@
+﻿@model Photo
+
+@{
+    var photo = Model;
+}
+
+<div class="d-flex justify-content-center">
+    <div style="width: 35rem; height: 60rem;">
+        <h2 class="text-center">@photo.Title</h2>
+        <img src="@photo.ImgSrc" class="card-img-top" alt="Foto" style="height: 12rem;">
+        <div class="card-body">
+            <h6>Descrizione: @photo.Description</h6>
+            <h6>Categorie:
+                @foreach (var category in photo.Categories!)
+                {
+                    <span>@category.Title</span>
+                }
+            </h6>
+        </div>
+    </div>
+</div>

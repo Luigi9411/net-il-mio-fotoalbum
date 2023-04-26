@@ -1,0 +1,46 @@
+﻿@model PhotoFormModel
+
+<h2>Edita foto</h2>
+
+<div class="container">
+	<div class="pad">
+		<form method="post" asp-controller="Photo" asp-action="Update" enctype="multipart/form-data">
+			@Html.AntiForgeryToken()
+			<div class="form-field">
+				<label asp-for="Photo.Title">Titolo</label>
+				<input asp-for="Photo.Title" />
+				<span asp-validation-for="Photo.Title" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="Photo.Description">Descrizione</label>
+				<textarea asp-for="Photo.Description"></textarea>
+				<span asp-validation-for="Photo.Description" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="Photo.Url">Image source</label>
+				<input asp-for="Photo.Url" />
+				<span asp-validation-for="Photo.Url" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="ImageFormFile">Image file</label>
+				<input type="file" asp-for="ImageFormFile" />
+				<span asp-validation-for="ImageFormFile" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<span><label asp-for="Photo.Visible">Visible</label><span class="ps-2"><input type="checkbox" asp-for="Photo.Visible" /></span></span>
+			</div>
+
+			<div class="form-field">
+				<label for="SelectedCategoryIds">Categorie</label>
+				@foreach (var category in Model.Categories)
+				{
+					<div class="flex gap">
+						<input value="@category.Id" id="@category.Id" checked="@Model.SelectedCategoryIds.Contains(category.Id)" name="SelectedCategoryIds" type="checkbox" />
+						<label for="@category.Id">@category.Title</label>
+					</div>
+				}
+			</div>
+			<button type="submit">Salva</button>
+		</form>
+	</div>
+</div>

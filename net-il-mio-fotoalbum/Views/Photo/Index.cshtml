@@ -1,0 +1,22 @@
+﻿@model Photo[]
+
+@{
+    ViewData["Title"] = "My pizzas";
+    var photos = Model;
+}
+
+@if (photos.Length is 0)
+{
+    <p>No post to display :\</p>
+}
+else
+{
+
+    <ul class="d-flex  mt-3 justify-content-center" style="list-style-type:none;">
+        @foreach (var photo in photos)
+        {
+            @await Html.PartialAsync("_PhotoRow" , photo)
+            ;
+        }
+    </ul>
+}
