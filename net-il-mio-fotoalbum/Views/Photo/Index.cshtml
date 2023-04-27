@@ -5,16 +5,10 @@
     var photos = Model;
 }
 
-@if (User.IsInRole("Admin"))
-{
-    <div class="pad">
-        <a href="@Url.Action("Create", "Photo")">Nuova Foto</a>
-    </div>
-}
 
 @if (photos.Length is 0)
 {
-    <p>No post to display :\</p>
+    <p>No photo to display :\</p>
 }
 else
 {

@@ -13,7 +13,9 @@ namespace net_il_mio_fotoalbum.Models
 
         public DbSet<Category> Categories { get; set; }
 
-        public void Seed()
+		public DbSet<Message> Messages { get; set; }
+
+		public void Seed()
         {
             var photoSeed = new Photo[]
             {

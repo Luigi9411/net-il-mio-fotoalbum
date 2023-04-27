@@ -16,3 +16,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+?#photos,
+#no-photos,
+#photos-filter {
+    display: none;
+}
+
+#photos-cards.show {
+    display: table;
+}
+
+:is(#no-photos, #photos-filter).show {
+    display: block;
+}
+
+#photos-loader.hide {
+    display: none;
+}

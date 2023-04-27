@@ -8,9 +8,12 @@
 			<li>
 					<a href="@Url.Action("ApiIndex", "Photo")" class="text-black">Api</a>
 			</li>
-		    <li>
+			@if (User.IsInRole("Admin"))
+			{
+			<li>
 					<a href="@Url.Action("Create", "Photo")" class="text-black">Aggiungi foto</a>
 		    </li>
+			}
 			@await Html.PartialAsync("_LoginPartial")
 		</ul>
 	</nav>

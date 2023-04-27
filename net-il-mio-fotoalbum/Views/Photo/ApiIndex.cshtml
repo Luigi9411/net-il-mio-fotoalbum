@@ -1,0 +1,48 @@
+﻿﻿@{
+    ViewData["Title"] = "Le mie foto";
+}
+
+<h2>Le mie foto</h2>
+
+
+
+<p id="photos-loader">Loading photo...</p>
+
+<p id="no-photos">No photo to display :\</p>
+
+<div class="grid gap">
+    <div id="photos-filter">
+        <div class="form-field">
+            <label>Filtra per titolo</label>
+            <input placeholder="filter" />
+        </div>
+    </div>
+
+    <ul id="photos-cards" class="d-flex  mt-3 justify-content-center" style="list-style-type:none;"></ul>
+    <form class="pb-5" id="message-form">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Inserisci la tua Email">
+            <span id="email-error" class="text-warning"></span>
+        </div>
+        <div class="mb-3">
+            <label for="text" class="form-label">Messaggio</label>
+            <textarea class="form-control" id="message"></textarea>
+            <span id="message-error" class="text-warning"></span>
+        </div>
+        <button id="submit" type="submit" class="btn btn-primary">Invia</button>
+    </form>
+
+    
+</div>
+
+@section Scripts
+{
+    <script>
+        loadPhotos();
+        initFilter();
+        initMessageForm();
+    </script>
+}
+
+

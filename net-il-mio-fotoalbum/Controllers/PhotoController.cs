@@ -26,6 +26,12 @@ namespace net_il_mio_fotoalbum.Controllers
 
         }
 
+        public IActionResult ApiIndex()
+        {
+            return View();
+        }
+
+
         public IActionResult Detail(int id)
         {
             var photo = _context.Photos.Include(p => p.Categories).SingleOrDefault(p => p.Id == id);
