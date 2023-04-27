@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Photo\ApiDetail.cshtml" />
     <Content Remove="Views\Photo\Message.cshtml" />
   </ItemGroup>
 

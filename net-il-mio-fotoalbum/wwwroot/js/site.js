@@ -30,7 +30,15 @@ const getPhoto = id => axios
     .get(`/api/photo/${id}`)
     .then(res => res.data);
 
+function initDetail() {
+    var id = Number(location.pathname.split("/")[3])
+    getPhoto(id).then(photo => renderPhoto(photo));
+}
 
+const renderPhoto = photo => {
+    const pagina = document.getElementById('detail');
+    pagina.innerHTML = photoDetail(photo);
+}
 
 const photoComponent = photo => `
  <li>
@@ -41,9 +49,22 @@ const photoComponent = photo => `
                         <a class="card-title ms-lg-3" href="/photo/detail/${photo.id}">${photo.title}</a>
                 </h4>
                 <p class="card-text ms-lg-3">${photo.description}</p>
+                <a class="btn btn-primary" href="/Photo/ApiDetail/${photo.id}">Dettagli</a>
         </div >
     </div >
 </li>`;
+
+const photoDetail = photo => `
+    <h2 class="text-center>${photo.title}</h2>
+
+    <div class="container">
+	    <div class="pb-4">
+		    <img src="${photo.url}" class=" detail-img " alt="photo" >
+	    </div>
+	    <div>
+		   <p class="card-text  ms-lg-3">Descrizione: ${photo.description}</p>
+	    </div>
+    </div>`;
 
 
 

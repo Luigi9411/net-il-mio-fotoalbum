@@ -1,38 +1,16 @@
-﻿﻿<div>
-    <div id="table">
+﻿﻿﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<main class="pt-4">
+    <div class="container">
+        <div id="detail"></div>
     </div>
-    <div class="my-4 d-flex justify-content-between">
-        <div class="col-6 d-flex flex-wrap flex-column">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <h3 class="text-white-50">Scrivi un commento</h3>
-                <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
-                <button type="button" onclick="sendComment()" class="btn btn-outline-light d-inline align-self-end mt-3">Invia</button>
-            }
-            else
-            {
-                <p class="text-white-50">Registrati per interagire con la community.</p>
-                <p class="text-white">
-                    <a class="nav-link text-success d-inline" id="register" asp-area="Identity" asp-page="/Account/Register">Registrati</a>
-                    o
-                    <a class="nav-link text-success d-inline" id="login" asp-area="Identity" asp-page="/Account/Login">Accedi</a>
-                    se possiedi giá un account
+</main>
 
-                </p>
-
-            }
-        </div>
-        <div class="col-5">
-            <h3 class="text-white-50">Commenti</h3>
-            <div id="comments" class="w-100 pe-2" style="height:250px; overflow-y: scroll;">
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts
-    {
+@section Scripts {
     <script>
-        initDetails();
+        initDetail()
     </script>
 }
