@@ -44,7 +44,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Photo}/{action=Index}/{id?}");
+    pattern: "{controller=Photo}/{action=ApiIndex}/{id?}");
 
 app.MapRazorPages();
 

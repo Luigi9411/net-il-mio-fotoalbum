@@ -17,7 +17,7 @@ namespace net_il_mio_fotoalbum.Controllers
                 _context = context;
             }
 
-            public IActionResult Message()
+            public IActionResult Index()
             {
                 var messages = _context.Messages!.ToArray();
                 return View(messages);

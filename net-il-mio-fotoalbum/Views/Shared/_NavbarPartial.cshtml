@@ -3,16 +3,27 @@
 	<nav class="navb">
 		<ul>
 			<li>
-					<a href="@Url.Action("Index", "Photo")" class="text-black">Home</a>
-			</li>
-			<li>
-					<a href="@Url.Action("ApiIndex", "Photo")" class="text-black">Api</a>
+				<button type="button" class="nav-link btn btn-secondary text-dark mt-2">
+				<a href="@Url.Action("ApiIndex", "Photo")" class="text-black">Api</a>
+				</button>
 			</li>
 			@if (User.IsInRole("Admin"))
 			{
-			<li>
+			    <li>
+					<button type="button" class="nav-link btn btn-secondary text-dark mt-2">
+				     <a href="@Url.Action("Index", "Message")" class="text-black">Messaggi</a>
+				  </button>
+			    </li>
+				<li>
+					<button type="button" class="nav-link btn btn-secondary text-dark mt-2">
+					<a href="@Url.Action("Index", "Photo")" class="text-black">Home</a>
+					</button>
+				</li>
+				<li>
+					<button type="button" class="nav-link btn btn-secondary text-dark mt-2">
 					<a href="@Url.Action("Create", "Photo")" class="text-black">Aggiungi foto</a>
-		    </li>
+					</button>
+				</li>
 			}
 			@await Html.PartialAsync("_LoginPartial")
 		</ul>

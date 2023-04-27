@@ -1,0 +1,48 @@
+﻿﻿@model Message[]
+
+@{
+    ViewData["Title"] = "Messaggi";
+
+    Message[] messages = Model;
+}
+@if (messages.Length > 0)
+{
+    <table class="table text-white">
+        <thead class="text-white-50">
+            <tr>
+                <th scope="col" class="col-1">#</th>
+                <th scope="col" class="col-3">Email</th>
+                <th scope="col" class="col-7">Messaggio</th>
+                <th scope="col" class="col-1">Delete</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+            @foreach (Message mex in messages)
+            {
+                <tr>
+                    <th scope="row">@mex.Id</th>
+                    <td>@mex.Email</td>
+                    <td>@mex.Text</td>
+                    <td>
+                        <form asp-controller="Admin" asp-action="DeleteMessage" asp-route-id="@mex.Id" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="border-0 bg-transparent m-0 p-0">
+                                <i class="fa-sharp fa-solid fa-xmark" style="color: #ff0000;"></i>
+                            </button>
+                        </form>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-white-50 mt-4">La posta é vuota.</h1>
+}
